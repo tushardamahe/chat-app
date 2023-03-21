@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { auth, database } from '../misc/firebase';
 
 const ProfileContext = createContext();
@@ -30,9 +24,10 @@ export const ProfileProvider = ({ children }) => {
           };
 
           setProfile(data);
+          setIsLoading(false);
         });
       } else {
-        if (useRef) {
+        if (userRef) {
           userRef.off();
         }
 
@@ -44,7 +39,7 @@ export const ProfileProvider = ({ children }) => {
     return () => {
       authUnsub();
 
-      if (useRef) {
+      if (userRef) {
         userRef.off();
       }
     };
