@@ -27,18 +27,18 @@ const INITIAL_FORM = {
 };
 
 const CreateRoomBtnModal = () => {
-  const { isOpen, open, close } = useModelState(INITIAL_FORM);
+  const { isOpen, open, close } = useModelState();
 
-  const [formValue, setFormValue] = useState();
+  const [formValue, setFormValue] = useState(INITIAL_FORM);
   const [isLoading, setIsLoading] = useState(false);
-  const fromRef = useRef();
+  const formRef = useRef();
 
   const onFormChange = useCallback(value => {
     setFormValue(value);
   }, []);
 
   const onSubmit = async () => {
-    if (!fromRef.current.check()) {
+    if (!formRef.current.check()) {
       return;
     }
 
@@ -77,7 +77,7 @@ const CreateRoomBtnModal = () => {
             onChange={onFormChange}
             formValue={formValue}
             model={model}
-            ref={fromRef}
+            ref={formRef}
           >
             <FormGroup>
               <ControlLabel>Room Name</ControlLabel>
