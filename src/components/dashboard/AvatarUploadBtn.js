@@ -4,7 +4,7 @@ import AvatarEditor from 'react-avatar-editor';
 import { useProfile } from '../../context/profile.context';
 import { useModelState } from '../../misc/custom-hooks';
 import { database, storage } from '../../misc/firebase';
-import ProfileAvatar from './ProfileAvatar';
+import ProfileAvatar from '../ProfileAvatar';
 
 const fileInputTypes = '.png, .jpeg, .jpg';
 
