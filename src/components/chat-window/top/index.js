@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 import { ButtonToolbar, Icon } from 'rsuite';
 import { useCurrentRoom } from '../../../context/current-room.context';
 import { useMediaQuery } from '../../../misc/custom-hooks';
+import EditRoomBtnDrawer from './EditRoomBtnDrawer';
 import RoomInfoBtnModal from './RoomInfoBtnModal';
 
 const ChatTop = () => {
   const name = useCurrentRoom(v => v.name);
+  const isAdmin = useCurrentRoom(v => v.isAdmin);
   const isMobile = useMediaQuery('(max-width: 992px)');
 
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center">
-        <h4 className='text-disappear d-flex align-items-center'>
+        <h4 className="text-disappear d-flex align-items-center">
           <Icon
             componentClass={Link}
             to="/"
@@ -27,7 +29,9 @@ const ChatTop = () => {
           <span> {name}</span>
         </h4>
 
-        <ButtonToolbar className="ws-nowrap">Todo</ButtonToolbar>
+        <ButtonToolbar className="ws-nowrap">
+          {isAdmin && <EditRoomBtnDrawer />}
+        </ButtonToolbar>
       </div>
 
       <div className="d-flex justify-content-between align-items-center">
